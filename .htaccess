@@ -1,0 +1,189 @@
+# ============================================================
+# Vivaa Solutions — .htaccess
+# 301 Redirects for 113 GSC Not-Indexed / 404 URLs
+# Generated: 2026-09-12
+# ============================================================
+
+Options -Indexes
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ── 1. Force HTTPS ──────────────────────────────────────
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # ── 2. Force www ────────────────────────────────────────
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+  # ── 3. home.html → homepage ─────────────────────────────
+  RewriteRule ^home(\.html)?/?$ / [R=301,L]
+  # index.html -> /
+  RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+
+  # ── 4. smm.html (duplicate) → canonical page ────────────
+  RewriteRule ^smm(\.html)?/?$ /social-media-marketing.html [R=301,L]
+
+  # ── 5. Block search param spam ──────────────────────────
+  RewriteCond %{QUERY_STRING} s=%7Bsearch_term_string%7D [NC,OR]
+  RewriteCond %{QUERY_STRING} search_term [NC]
+  RewriteRule .* - [F,L]
+
+  # ── 6. Block cdn-cgi spam ───────────────────────────────
+  RewriteRule ^cdn-cgi/ - [F,L]
+
+  # ── 7. OLD SUBFOLDER → NEW ROOT (90 URLs) ───────────────
+  # /seo/ subfolder
+
+  # ── SEO subfolder
+  RewriteRule ^seo/ai-seo\.html$ /ai-seo.html [R=301,L]
+  RewriteRule ^seo/b2b-seo\.html$ /b2b-seo.html [R=301,L]
+  RewriteRule ^seo/b2c-seo\.html$ /b2c-seo.html [R=301,L]
+  RewriteRule ^seo/ecommerce-seo\.html$ /ecommerce-seo.html [R=301,L]
+  RewriteRule ^seo/enterprise-seo\.html$ /enterprise-seo.html [R=301,L]
+  RewriteRule ^seo/global-seo\.html$ /global-seo.html [R=301,L]
+  RewriteRule ^seo/google-ads\.html$ /google-ads.html [R=301,L]
+  RewriteRule ^seo/international-seo\.html$ /international-seo.html [R=301,L]
+  RewriteRule ^seo/local-seo\.html$ /local-seo.html [R=301,L]
+  RewriteRule ^seo/mobile-seo\.html$ /mobile-seo.html [R=301,L]
+  RewriteRule ^seo/negative-seo\.html$ /negative-seo.html [R=301,L]
+  RewriteRule ^seo/online-reputation\.html$ /online-reputation.html [R=301,L]
+  RewriteRule ^seo/page-optimization\.html$ /page-optimization.html [R=301,L]
+  RewriteRule ^seo/seo-auditing\.html$ /seo-auditing.html [R=301,L]
+  RewriteRule ^seo/seo-competitor-analysis\.html$ /seo-competitor-analysis.html [R=301,L]
+  RewriteRule ^seo/seo-service\.html$ /seo-service.html [R=301,L]
+  RewriteRule ^seo/shopify-seo\.html$ /shopify-seo.html [R=301,L]
+  RewriteRule ^seo/speed-optimization\.html$ /speed-optimization.html [R=301,L]
+  RewriteRule ^seo/unwanted-content\.html$ /unwanted-content.html [R=301,L]
+  RewriteRule ^seo/voice-search-seo\.html$ /voice-search-seo.html [R=301,L]
+  RewriteRule ^seo/woocommerce-seo\.html$ /woocommerce-seo.html [R=301,L]
+  RewriteRule ^seo/youtube-seo\.html$ /youtube-seo.html [R=301,L]
+  RewriteRule ^seo/country-specific-seo\.html$ /country-specific-seo.html [R=301,L]
+  RewriteRule ^seo/cro-seo\.html$ /cro-seo.html [R=301,L]
+  RewriteRule ^seo/guest-posting\.html$ /guest-posting.html [R=301,L]
+  RewriteRule ^seo/link-building\.html$ /link-building.html [R=301,L]
+  RewriteRule ^seo/competitor-analysis\.html$ /seo-competitor-analysis.html [R=301,L]
+
+  # ── SEM subfolder
+  RewriteRule ^sem/google-display-ads\.html$ /google-display-ads.html [R=301,L]
+  RewriteRule ^sem/google-remarketing\.html$ /google-remarketing.html [R=301,L]
+  RewriteRule ^sem/google-shopping-ads\.html$ /google-shopping-ads.html [R=301,L]
+  RewriteRule ^sem/lead-generation-ads\.html$ /lead-generation-ads.html [R=301,L]
+  RewriteRule ^sem/programmatic-ads\.html$ /programmatic-ads.html [R=301,L]
+  RewriteRule ^sem/revenue-generation-ads\.html$ /revenue-generation-ads.html [R=301,L]
+  RewriteRule ^sem/youtube-video-ads\.html$ /youtube-video-ads.html [R=301,L]
+  RewriteRule ^sem/bing-ads\.html$ /bing-ads.html [R=301,L]
+
+  # ── SMM subfolder
+  RewriteRule ^smm/brand-building\.html$ /brand-building.html [R=301,L]
+  RewriteRule ^smm/brand-recognition\.html$ /brand-recognition.html [R=301,L]
+  RewriteRule ^smm/facebook-marketing\.html$ /facebook-marketing.html [R=301,L]
+  RewriteRule ^smm/instagram-marketing\.html$ /instagram-marketing.html [R=301,L]
+  RewriteRule ^smm/linkedin-marketing\.html$ /linkedin-marketing.html [R=301,L]
+  RewriteRule ^smm/pinterest-marketing\.html$ /pinterest-marketing.html [R=301,L]
+  RewriteRule ^smm/sms-marketing\.html$ /sms-marketing.html [R=301,L]
+  RewriteRule ^smm/smm-competitor-analysis\.html$ /smm-competitor-analysis.html [R=301,L]
+  RewriteRule ^smm/social-media-advertising\.html$ /social-media-advertising.html [R=301,L]
+  RewriteRule ^smm/social-media-management\.html$ /social-media-management.html [R=301,L]
+  RewriteRule ^smm/social-media-marketing\.html$ /social-media-marketing.html [R=301,L]
+  RewriteRule ^smm/twitter-marketing\.html$ /twitter-marketing.html [R=301,L]
+  RewriteRule ^smm/whatsapp-marketing\.html$ /whatsapp-marketing.html [R=301,L]
+  RewriteRule ^smm/youtube-seo\.html$ /youtube-seo.html [R=301,L]
+  RewriteRule ^smm/page-optimization\.html$ /page-optimization.html [R=301,L]
+
+  # ── WebDev subfolder
+  RewriteRule ^webdev/cms-development\.html$ /cms-development.html [R=301,L]
+  RewriteRule ^webdev/corporate-web\.html$ /corporate-web.html [R=301,L]
+  RewriteRule ^webdev/custom-development\.html$ /custom-development.html [R=301,L]
+  RewriteRule ^webdev/ecommerce-development\.html$ /ecommerce-development.html [R=301,L]
+  RewriteRule ^webdev/figma-to-web\.html$ /figma-to-web.html [R=301,L]
+  RewriteRule ^webdev/interactive-web\.html$ /interactive-web.html [R=301,L]
+  RewriteRule ^webdev/landing-page\.html$ /landing-page.html [R=301,L]
+  RewriteRule ^webdev/one-page\.html$ /one-page.html [R=301,L]
+  RewriteRule ^webdev/responsive-web\.html$ /responsive-web.html [R=301,L]
+  RewriteRule ^webdev/shopify-development\.html$ /shopify-development.html [R=301,L]
+  RewriteRule ^webdev/website-design\.html$ /website-design.html [R=301,L]
+  RewriteRule ^webdev/website-maintenance\.html$ /website-maintenance.html [R=301,L]
+  RewriteRule ^webdev/website-redesign\.html$ /website-redesign.html [R=301,L]
+  RewriteRule ^webdev/woocommerce-seo\.html$ /woocommerce-seo.html [R=301,L]
+  RewriteRule ^webdev/wordpress-development\.html$ /wordpress-development.html [R=301,L]
+  RewriteRule ^webdev/wordpress-multisite\.html$ /wordpress-multisite.html [R=301,L]
+
+  # ── Design subfolder
+  RewriteRule ^design/app-design\.html$ /app-design.html [R=301,L]
+  RewriteRule ^design/brochure-design\.html$ /brochure-design.html [R=301,L]
+  RewriteRule ^design/envelop-design\.html$ /envelop-design.html [R=301,L]
+  RewriteRule ^design/flyers-design\.html$ /flyers-design.html [R=301,L]
+  RewriteRule ^design/graphic-design\.html$ /graphic-design.html [R=301,L]
+  RewriteRule ^design/id-card-design\.html$ /id-card-design.html [R=301,L]
+  RewriteRule ^design/letterhead-design\.html$ /letterhead-design.html [R=301,L]
+  RewriteRule ^design/logo-design\.html$ /logo-design.html [R=301,L]
+  RewriteRule ^design/package-design\.html$ /package-design.html [R=301,L]
+  RewriteRule ^design/poster-design\.html$ /poster-design.html [R=301,L]
+  RewriteRule ^design/uiux-design\.html$ /uiux-design.html [R=301,L]
+  RewriteRule ^design/visiting-card-design\.html$ /visiting-card-design.html [R=301,L]
+
+  # ── Management subfolder
+  RewriteRule ^management/business-email\.html$ /business-email.html [R=301,L]
+  RewriteRule ^management/domain-registration\.html$ /domain-registration.html [R=301,L]
+  RewriteRule ^management/gmb-optimization\.html$ /gmb-optimization.html [R=301,L]
+  RewriteRule ^management/lead-generation\.html$ /lead-generation.html [R=301,L]
+  RewriteRule ^management/management\.html$ /management.html [R=301,L]
+  RewriteRule ^management/webhosting\.html$ /webhosting.html [R=301,L]
+
+  # ── Others subfolder
+  RewriteRule ^others/content-marketing\.html$ /content-marketing.html [R=301,L]
+  RewriteRule ^others/outsource\.html$ /outsource.html [R=301,L]
+  RewriteRule ^others/others\.html$ /others.html [R=301,L]
+
+  # ── About subfolder
+  RewriteRule ^about/achievements\.html$ /achievements.html [R=301,L]
+  RewriteRule ^about/clients\.html$ /clients.html [R=301,L]
+  RewriteRule ^about/technologies\.html$ /technologies.html [R=301,L]
+  RewriteRule ^about/testimonials\.html$ /testimonials.html [R=301,L]
+  RewriteRule ^about/why-us\.html$ /why-us.html [R=301,L]
+
+
+  # old folder index -> section page
+  RewriteRule ^(seo|sem|webdev|design|management|about)/?$ /$1.html [R=301,L]
+  RewriteRule ^smm/?$ /social-media-marketing.html [R=301,L]
+  # strip trailing slash
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+</IfModule>
+
+# ── Custom Error Pages ──────────────────────────────────────
+ErrorDocument 404 /404.html
+ErrorDocument 500 /404.html
+
+# ── Security Headers ────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header set Cache-Control "no-cache, no-store" env=dontcache
+</IfModule>
+
+# ── GZIP Compression ────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Browser Caching ─────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp  "access plus 1 year"
+  ExpiresByType image/png   "access plus 1 year"
+  ExpiresByType image/jpeg  "access plus 1 year"
+  ExpiresByType image/gif   "access plus 1 year"
+  ExpiresByType text/css    "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html   "access plus 1 day"
+</IfModule>
